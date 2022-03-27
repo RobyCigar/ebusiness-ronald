@@ -1,0 +1,87 @@
+.container {
+    width: 100%;
+    min-height: 200px;
+ }
+
+#atas {
+    display: grid;
+    background-color: #001D49;
+    margin-top: 20px; 
+    height: 100px;
+    color: aliceblue;
+    text-align: center;
+    align-items: center;
+}
+
+
+#namelogin {
+    display: grid;
+    margin-top: 15px; 
+    height: 100px;
+    font-weight:bold;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-items: center;
+}
+
+#cardlogin {
+    display: grid;
+    height: 240px;
+    background-color: #001D49;
+    color: rgb(255, 255, 255);
+    padding-bottom: 40px;
+    margin-left: 450px;
+    margin-right: 450px;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+
+
+#username
+{
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
+
+#inputPassword
+{
+    display: grid;
+    text-align: center;
+    align-items: center;
+    margin-left: 1px;
+    width: 190px;
+}
+
+
+#buttonlogin
+{
+ color: aliceblue;
+ position: absolute;
+ background-color: #2759A3;  
+ left: 50%; 
+ transform: translateX(-50%)
+}
+
+#tosignup
+{
+    display: grid;
+    margin-top: 30px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-items: center;
+}
+
+.copyright
+{
+    display: grid;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-items: center;
+}
