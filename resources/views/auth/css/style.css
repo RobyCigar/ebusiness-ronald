@@ -1,8 +1,12 @@
-.container {
+/* .container {
     width: 100%;
     min-height: 200px;
- }
+ } */
 
+ a, a:hover{
+    color:#333
+  }
+  
 #atas {
     display: grid;
     background-color: #001D49;
@@ -16,25 +20,27 @@
 
 #namelogin {
     display: grid;
-    margin-top: 15px; 
     height: 100px;
-    font-weight:bold;
+    font-weight: bolder;
     color: rgb(0, 0, 0);
     text-align: center;
     align-items: center;
 }
 
 #cardlogin {
-    display: grid;
+    display: flex;
     height: 240px;
     background-color: #001D49;
     color: rgb(255, 255, 255);
     padding-bottom: 40px;
-    margin-left: 450px;
-    margin-right: 450px;
-    align-items: center;
     border-radius: 10px;
+    text-align: center;
+    align-items: center;
     justify-content: center;
+    place-items: center;
+    width: 100%;
+    max-width: 330px;
+    margin: auto;
 }
 
 
@@ -51,8 +57,6 @@
     display: grid;
     text-align: center;
     align-items: center;
-    margin-left: 1px;
-    width: 190px;
 }
 
 
@@ -60,15 +64,25 @@
 {
  color: aliceblue;
  position: absolute;
+ align-items: center;
+ justify-content: center;
  background-color: #2759A3;  
- left: 50%; 
  transform: translateX(-50%)
 }
 
 #tosignup
 {
     display: grid;
-    margin-top: 30px;
+    margin-top: 15px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-items: center;
+}
+
+#tologin
+{
+    display: grid;
     font-size: 12px;
     color: rgb(0, 0, 0);
     text-align: center;
