@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>KASIRONALD</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/atas.css') }}" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/atas.css') }}" type="text/css"> -->
+
+
 </head>
 
 <body>
@@ -62,11 +63,16 @@
         </p>
     </div>
 
-
-
-
-
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <!-- <script language="JavaScript" type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script> -->
+    <script src="{{asset('js/axios.js')}}"></script>
+    <script defer>
+     (async function() {
+         await axios.get('http://localhost:8000/api').then(function(response) {
+             console.log(response.data);
+         });
+     })()
+    </script>
 </body>
 
 </html>
