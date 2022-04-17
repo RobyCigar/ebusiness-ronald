@@ -10,8 +10,10 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    public $table = 'attendances';
+
     protected $fillable = [
-        'user_id', 'date', 'status',
+        'time_start', 'time_end', 'user_id'
     ];
 
     public function user()

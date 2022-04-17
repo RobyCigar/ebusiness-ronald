@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\User;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -28,9 +30,18 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
+
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        // set user attendance on each login
+        Attendance::create([
+            'time_start' => Carbon::now(),
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return response()->json(auth()->user());
 
         return $this->respondWithToken($token);
     }
@@ -66,6 +77,11 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        // when user logout set the 'time_end' column to the current datetime
+        Attendance::where('user_id', '=', auth()->user()->id)
+            ->firstOrFail()
+            ->update(['time_end' => Carbon::now()]);
+
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
