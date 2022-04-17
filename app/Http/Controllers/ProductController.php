@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $products = Product::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($products);
     }
 
     /**
@@ -35,7 +31,35 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request
+        try {
+            $validate = $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'price' => 'required|numeric',
+                'image' => 'required|string|max:255',
+                'available' => 'required|numeric',
+                'quantity' => 'required|numeric',
+            ]);
+
+            $new_product = Product::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'available' => $request->available,
+                'image' => $request->image,
+                'quantity' => $request->quantity,
+            ]);
+        } catch(\Exception $e) {
+            return response()->json([
+                'message' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
+        
+        return response()->json([
+            'message' => 'Product created successfully',
+            'product' => $new_product
+        ], 201);
     }
 
     /**
@@ -46,18 +70,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
+        return response()->json($product);
     }
 
     /**
@@ -69,7 +82,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        try {
+            $validate = $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'price' => 'required|numeric',
+                'image' => 'required|string|max:255',
+                'available' => 'required|numeric',
+                'quantity' => 'required|numeric',
+            ]);
+
+            $product->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'available' => $request->available,
+                'image' => $request->image,
+                'quantity' => $request->quantity,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Product updated successfully',
+            'product' => $product
+        ], 200);
     }
 
     /**
@@ -80,6 +120,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+            $product->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Product deleted successfully',
+        ], 200);
     }
 }

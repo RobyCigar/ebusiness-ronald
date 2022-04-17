@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthController extends Controller
 {
@@ -40,8 +40,6 @@ class AuthController extends Controller
             'time_start' => Carbon::now(),
             'user_id' => auth()->user()->id,
         ]);
-
-        return response()->json(auth()->user());
 
         return $this->respondWithToken($token);
     }
@@ -78,9 +76,14 @@ class AuthController extends Controller
     public function logout()
     {
         // when user logout set the 'time_end' column to the current datetime
-        Attendance::where('user_id', '=', auth()->user()->id)
-            ->firstOrFail()
-            ->update(['time_end' => Carbon::now()]);
+        try {
+            Attendance::where('user_id', '=', auth()->user()->id)
+                ->whereNull('time_end')
+                ->firstOrFail()
+                ->update(['time_end' => Carbon::now()]);
+        } catch (ModelNotFoundException $error) {
+            return response()->json($error);
+        }
 
         auth()->logout();
 

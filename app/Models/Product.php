@@ -10,9 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name', 'description', 'price', 'stock',
-    ];
+    protected $guarded = [];
 
     public function transactions()
     {

@@ -4,6 +4,7 @@ use App\Http\Controllers\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,5 @@ Route::group([
     'middleware' => 'api'
 ], function () {
     Route::resource('attendance', AttendanceController::class);
+    Route::resource('product', ProductController::class);
 });
