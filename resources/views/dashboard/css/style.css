@@ -1,0 +1,40 @@
+
+body,
+button {
+  font-family: "Inter", sans-serif;
+}
+:root {
+  --offcanvas-width: 200px;
+  --topNavbarHeight: 80px;
+}
+.sidebar-nav {
+  width: var(--offcanvas-width);
+}
+
+.nav-link:hover{
+  background-color: black;
+}
+
+#atas {
+  font-size: 30px;
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  main {
+    margin-left: var(--offcanvas-width);
+  }
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+  .sidebar-nav {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible !important;
+    height: calc(100% - var(--topNavbarHeight));
+    top: var(--topNavbarHeight);
+  }
+}
