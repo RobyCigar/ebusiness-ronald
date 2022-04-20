@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', function () {
-    return response()->json(['message' => 'dsaf to API Kasironald']);
+    return response()->json(['message' => 'api endpoint to API Kasironald']);
 });
 
 
@@ -30,9 +30,9 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('login', [AuthController::class, 'login'])->name('api.login');
+    Route::post('register', [AuthController::class, 'register'])->name('api.register');
+    Route::post('logout', [AuthController::class, 'logout'])->name('api.logout');
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
@@ -42,4 +42,5 @@ Route::group([
 ], function () {
     Route::resource('attendance', AttendanceController::class);
     Route::resource('product', ProductController::class);
+    Route::get('user', [AuthController::class, 'index']);
 });

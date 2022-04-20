@@ -28,11 +28,16 @@ class AuthController extends Controller
      */
     public function login()
     {
+        $this->validate(request(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         $credentials = request(['email', 'password']);
 
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         // set user attendance on each login

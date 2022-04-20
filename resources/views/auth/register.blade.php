@@ -1,77 +1,117 @@
 @extends('layouts.app')
 
+@push('styles')
+<style>
+    form {
+        position: relative;
+        top: -5%;
+    }
+
+    .copyright {
+        position: relative;
+        top: -10%;
+        right: 10px;
+        text-align: right;
+    }
+</style>
+@endpush
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<!-- Alert with jquery -->
+<div class="" role="alert" style="display:none;">
+</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<!--Bagian Card Log In dan Sign Up-->
+<section class="row d-flex align-items-center vh-100 justify-content-center">
+    <form class="card px-5 py-5 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit">
+        <div id="namelogin">
+            <h2 class="fw-bold text-center">Register</h2>
+        </div>
+        <div class="my-2">
+            <label for="email" class="form-label">Email*</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="my-2">
+            <label for="username" class="form-label">Username*</label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="my-2">
+            <label for="password">Password</label>
+            <div class="col-sm-20">
+                <input type="password" class="form-control" id="password">
             </div>
         </div>
-    </div>
+        <div class="my-2">
+            <label for="confirmpassword">Confirm Password</label>
+            <div class="col-sm-20">
+                <input type="password" class="form-control" id="confirmpassword">
+            </div>
+        </div>
+        <label class="mb-2">Ingin login? <a href="{{route('login')}}"> Klik disini</a></label>
+        <div class="my-2">
+            <button type="button" class="btn btn-primary" id="buttonregister">Register</button>
+        </div>
+    </form>
+</section>
+<!--End Bagian Card Log In dan Sign Up-->
+
+<div class="copyright">
+    <p>
+        <img width="10" src="{{asset('assets/copyright.svg')}}" alt="">
+
+        Copyright Kasironald 2022
+    </p>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#buttonregister').click(function() {
+            let email = $('#email').val();
+            let name = $('#username').val();
+            let password = $('#password').val();
+            let confirmpassword = $('#confirmpassword').val();
+
+            console.log('here', password, confirmpassword)
+            if (password !== confirmpassword) {
+                let alert = $('div[role="alert"]');
+                alert.addClass('alert alert-danger');
+                alert.html('Password dan Confirm Password tidak sama');
+                alert.show()
+
+                return false;
+            }
+
+            $.ajax({
+                url: "{{route('api.register')}}",
+                type: "POST",
+                data: {
+                    email: email,
+                    name: name,
+                    password: password,
+                    confirmpassword: confirmpassword,
+                    _token: "{{csrf_token()}}"
+                },
+                success: function(data) {
+                    let alert = $('div[role="alert"]');
+                    alert.addClass('alert alert-success');
+                    alert.html('User berhasil dibuat');
+                    alert.show()
+
+                    return false;
+                },
+                error: function(data) {
+                    console.log(data);
+                    let alert = $('div[role="alert"]');
+                    alert.addClass('alert alert-danger alert-dismissible');
+                    alert.html(data.responseJSON.message);
+                    alert.show()
+
+                    return false;
+                }
+            })
+        })
+    })
+</script>
+@endpush

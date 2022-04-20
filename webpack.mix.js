@@ -23,3 +23,6 @@ mix.js('resources/js/bootstrap.js', 'public/js')
 
 mix.js('resources/js/jquery.js', 'public/js')
     .sourceMaps();
+
+mix.js('resources/js/chart.js', 'public/js')
+    .sourceMaps();

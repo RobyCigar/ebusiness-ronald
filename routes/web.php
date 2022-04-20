@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,18 @@ Route::get('/', function () {
 
 // Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Auth::routes();
-
-Route::get('/v1/login', function () {
-    return view('v1/auth/login');
+    Route::resource('/users', UserController::class);
 });
+
+
+Route::get('auth/login', function () {
+    return view('auth/login');
+})->name('login');
+
+Route::get('auth/register', function () {
+    return view('auth/register');
+})->name('register');
+
