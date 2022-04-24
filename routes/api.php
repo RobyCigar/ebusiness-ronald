@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\AttendanceController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', function () {
-    return response()->json(['message' => 'api endpoint to API Kasironald']);
+    return response()->json(['message' => 'Entrypoint to API Kasironald']);
 });
 
 
@@ -38,9 +39,10 @@ Route::group([
 });
 
 Route::group([ 
-    'middleware' => 'api'
+    // 'middleware' => 'api'
 ], function () {
     Route::resource('attendance', AttendanceController::class);
     Route::resource('product', ProductController::class);
     Route::get('user', [AuthController::class, 'index']);
+    Route::resource('transaction', TransactionController::class);
 });

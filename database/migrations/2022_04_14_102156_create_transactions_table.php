@@ -16,7 +16,6 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->date('date');
             $table->integer('total_price');
             $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
 

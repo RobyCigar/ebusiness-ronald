@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        // $this->middleware('auth:api', ['except' => ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
