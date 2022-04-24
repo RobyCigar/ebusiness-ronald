@@ -36,7 +36,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json(auth()->user());
         // create transaction
         $items = $request->all()['items'];
         $total = 0;
@@ -48,14 +47,18 @@ class TransactionController extends Controller
                 $array[] = array_merge($value, ['created_at' => $now, 'updated_at' => $now]);
             }
             
+            $transaction = new Transaction();
+            $transaction->user_id = auth()->user()->id;
+            $transaction->total_price = $total;
+            $transaction->save();
 
-            $transaction = Transaction::insert([
-                'user_id' => auth()->user()->id,
-                'total_price' => $total,
-            ]);
+            // add transaction_id on each transaction item table
+            foreach ($array as $item => $value) {
+                $array[$item]['transaction_id'] = $transaction->id;
+            }
 
-
-            TransactionItem::insert(array_merge($array, ['transaction_id' => $transaction->id]));
+            // store every items array to transactionitem
+            TransactionItem::insert($array);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -77,7 +80,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Transaction::find($id));
     }
 
     /**
