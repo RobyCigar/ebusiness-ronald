@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
 
+@push('styles')
+<script>
+    if (!localStorage.getItem('token')) {
+        window.location.replace("{{route('login')}}");
+    }
+</script>
+<link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+
+<style>
+
+</style>
+@endpush
+
+@section('content')
+<!-- End Bagian Atas Navigation -->
+
+<!-- Load sidebar component -->
+<x-sidebar/>
+<!-- Isi Konten Dashboard -->
+
+<main class="">
 <h1>Form Produk Baru</h1>
     <form action='#create_data' id='data_list'>
         <table border='0'>
@@ -55,6 +67,11 @@
             </tr>
         </table>
     </form>
+
+</main>
+
+@endsection
+@push('scripts')
     <script>
         $(document).ready(function(){
 
@@ -86,5 +103,4 @@
         });
     </script>
 
-</body>
-</html>
+@endpush
