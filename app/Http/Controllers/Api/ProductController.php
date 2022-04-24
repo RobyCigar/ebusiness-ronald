@@ -34,22 +34,21 @@ class ProductController extends Controller
     {
         // validate request
         try {
-            $validate = $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
-                'price' => 'required|numeric',
-                'image' => 'required|string|max:255',
-                'available' => 'required|numeric',
-                'quantity' => 'required|numeric',
-            ]);
+            // $validate = $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'description' => 'required|string|max:255',
+            //     'price' => 'required|numeric',
+            //     'stock' => 'required|numeric',
+            //     'production_cost' => 'numeric', // hpp
+            // ]);
 
             $new_product = Product::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'available' => $request->available,
-                'image' => $request->image,
-                'quantity' => $request->quantity,
+                'production_cost' => $request->production_cost,
+                'image' => $request->image ?? null,
+                'stock' => $request->stock,
             ]);
         } catch(\Exception $e) {
             return response()->json([

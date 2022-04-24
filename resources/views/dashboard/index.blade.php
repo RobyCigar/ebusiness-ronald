@@ -12,11 +12,13 @@
 <style>
     .card {
         /* background: hsl(216, 100%, 14%); */
-        border-radius: 15px;
+        border-radius: 12px;
         width: 18rem;
         text-align: center;
         margin: 2px 20px;
         height: 15rem;
+        background: #151F2E;
+        color: white;
     }
 
     .card-header {
@@ -54,7 +56,6 @@
 
 <!-- Load sidebar component -->
 <x-sidebar/>
-
 <!-- Isi Konten Dashboard -->
 
 <main class="">
@@ -64,7 +65,7 @@
         </div>
     </div>
     <section class="d-flex my-4 flex-column flex-sm-row align-items-center align-items-sm-stretch">
-        <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
+        <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem; back">
             <div class="card-header text-center">
                 <i class="fa-solid fa-circle-dollar-to-slot"></i>
                 Omset

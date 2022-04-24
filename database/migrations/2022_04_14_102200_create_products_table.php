@@ -18,9 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('price');
-            $table->integer('available');
+            $table->integer('production_cost');
             $table->string('image')->nullable();
-            $table->integer('quantity');
+            $table->integer('stock')->default(0);
 
             $table->timestamps();
         });

@@ -36,3 +36,6 @@ Route::get('auth/register', function () {
     return view('auth/register');
 })->name('register');
 
+Route::get('/dashboard/aturmenu', function (){
+    return view ('dashboard/aturmenu');
+})->name('aturmenu');
