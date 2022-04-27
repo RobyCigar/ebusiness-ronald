@@ -94,8 +94,18 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $transaction = Transaction::find($id);
+        try {
+            $transaction->update($request->all());
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error: ' . $th->getMessage(),
+            ], 500);
+        }
 
-        return response()->json($transaction->update($request->all()));
+        return response()->json([
+            'message' => 'Transaction updated successfully',
+            'transaction' => $transaction
+        ], 200);
     }
 
     /**
@@ -106,6 +116,17 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        
+        try {
+            $deleted = Transaction::find($id)->delete();
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error: ' . $th->getMessage(),
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Transaction deleted successfully',
+            'deleted' => $deleted
+        ], 200);
     }
 }
