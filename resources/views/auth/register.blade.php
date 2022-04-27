@@ -53,7 +53,6 @@
         </div>
     </form>
 </section>
-<!--End Bagian Card Log In dan Sign Up-->
 
 <div class="copyright">
     <p>
