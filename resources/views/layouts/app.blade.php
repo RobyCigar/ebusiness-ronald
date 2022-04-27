@@ -25,7 +25,7 @@
 
 <body>
     <div id="app">
-        <nav style="background-color:hsl(216, 100%, 14%);" class="navbar navbar-expand-md navbar-dark shadow">
+        <nav style="background-color:hsl(216, 100%, 14%); height:58px;" class="navbar navbar-expand-md navbar-dark shadow">
             <div class="container">
                 @if(url()->current() == route('register') || url()->current() == route('login'))
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
@@ -47,7 +47,7 @@
                     <ul class="navbar-nav ms-auto text-light">
                         @if(url()->current() !== route('login') && url()->current() !== route('register'))
                         <li class="nav-item" style="cursor: pointer;">
-                            <div id="logout">
+                            <div id="logout" style="width:66px;">
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                                 Logout
                             </div>

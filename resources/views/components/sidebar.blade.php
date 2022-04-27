@@ -3,7 +3,7 @@
     <nav class="navbar-dark" style="font-size: 18px;">
         <ul class="navbar-nav">
             <li>
-                <a href="#" class="nav-link px-4 mt-4 active">
+                <a href="#" class="nav-link px-4 mt-4 active" style="font-size: 25px;">
                     <span>Kasironald</span>
                     </i>
                 </a>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link px-4 mt-3  active">
+                <a href="{{route('aturmenu')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-square-plus"></i>
                     <span>Atur Menu</span>
                 </a>
