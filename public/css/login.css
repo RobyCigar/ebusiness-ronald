@@ -7,30 +7,22 @@
     position: relative;
     top: -5%;
 }
-  
-/* #atas {
-    display: grid;
-    background-color: #001D49;
-    margin-top: 20px; 
-    height: 100px;
-    color: aliceblue;
-    text-align: center;
-    align-items: center;
-}
 
-
-#namelogin {
-    display: grid;
-    height: 100px;
-    font-weight: bolder;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    align-items: center;
+#buttonlogin
+{
+ color: aliceblue;
+ display: grid;
+ position: absolute;
+ align-items: center;
+ justify-content: center;
+ background-color: #2759A3;  
+ margin: 80px;
+ margin-bottom: 100px;
 }
 
 #cardlogin {
     display: flex;
-    height: 240px;
+    height: 300px;
     background-color: #001D49;
     color: rgb(255, 255, 255);
     padding-bottom: 40px;
@@ -43,6 +35,17 @@
     max-width: 330px;
     margin: auto;
 }
+  
+/* #atas {
+    display: grid;
+    background-color: #001D49;
+    margin-top: 20px; 
+    height: 100px;
+    color: aliceblue;
+    text-align: center;
+    align-items: center;
+}
+
 
 
 
@@ -61,15 +64,6 @@
 }
 
 
-#buttonlogin
-{
- color: aliceblue;
- position: absolute;
- align-items: center;
- justify-content: center;
- background-color: #2759A3;  
- transform: translateX(-50%)
-}
 
 #tosignup
 {
