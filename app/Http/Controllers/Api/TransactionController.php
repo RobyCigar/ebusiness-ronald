@@ -23,7 +23,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
+        
+        $transactions = Transaction::with('transaction_items')->get();
 
         return response()->json($transactions);
     }
@@ -80,7 +81,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Transaction::find($id));
+        return response()->json(Transaction::with('transaction_items')->find($id));
     }
 
     /**
@@ -92,7 +93,9 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaction = Transaction::find($id);
+
+        return response()->json($transaction->update($request->all()));
     }
 
     /**
@@ -103,6 +106,6 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

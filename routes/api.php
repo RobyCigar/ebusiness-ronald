@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MouthfulQueries;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\TransactionController;
 
@@ -45,4 +46,9 @@ Route::group([
     Route::resource('product', ProductController::class);
     Route::get('user', [AuthController::class, 'index']);
     Route::resource('transaction', TransactionController::class);
+    Route::get('keuntungan', [MouthfulQueries::class, 'keuntungan']);
+    Route::get('omset', [MouthfulQueries::class, 'omset']);
+    Route::get('total_transaction', [MouthfulQueries::class, 'total_transaction']);
+
+
 });

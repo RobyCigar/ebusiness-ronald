@@ -9,9 +9,7 @@ class TransactionItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'transaction_id', 'product_id', 'quantity', 'price',
-    ];
+    protected $guarded = [];
 
     protected $table = 'transaction_items';
 }
