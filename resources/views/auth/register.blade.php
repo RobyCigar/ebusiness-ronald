@@ -75,9 +75,9 @@
                         <div class="d-flex justify-content-center">
                         <label class="mb-3 px-5 pe-5 ps-9">Ingin login? <a href="{{route('login')}}"> Klik disini</a></label>
                         </div>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mb-3 px-3 ">
         
-                        <button type="button" class="mb-3 px-3 btn btn-primary" id="buttonregister">Register</button>
+                        <button type="button" class="btn btn-primary" id="buttonregister">Register</button>
         
                         
                         </div>
