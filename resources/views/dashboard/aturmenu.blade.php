@@ -20,14 +20,20 @@
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
 
-<main class="">
-<h1>Form Produk Baru</h1>
+<div class="d-flex justify-content-center" style="color:black;margin-top:20px;font-family:
+Noto Sans TC;">
+ <h3>ATUR MENU</h3>
+</div>
+<hr>
+
+<div class="d-flex justify-content-center text-align-center">
+    <div class="container col-4" style="color:white;background:#001D49; padding:10px; border-radius:10px;">
     <form action='#create_data' id='data_list'>
         <table border='0'>
             <tr>
                 <td>Nama Produk</td>
                 <td>
-                    <input id="name" class='form-user-input' type='text' name='nama_produk' style='width: 40em'>
+                    <input id="name" class='form-user-input' type='text' name='nama_produk' style='width: 20em'>
                 </td>
             </tr>
             <tr>
@@ -35,40 +41,41 @@
             <tr>
                 <td>Dekripsi Produk</td>
                 <td>
-                    <input id="description" class='form-user-input' type='text' name='harga_produk' style='width: 40em'>
+                    <input id="description" class='form-user-input' type='text' name='harga_produk' style='width: 20em'>
                 </td>
             </tr>
             <tr>
             <tr>
                 <td>Stok Produk</td>
                 <td>
-                    <input id="stock" class='form-user-input' type='number' name='stok_produk' style='width: 40em'>
+                    <input id="stock" class='form-user-input' type='number' name='stok_produk' style='width: 20em'>
                 </td>
             </tr>
             <tr>
                 <td>HPP</td>
                 <td>
-                    <input id="production_cost" class='form-user-input' type='number' name='stok_produk' style='width: 40em'>
+                    <input id="production_cost" class='form-user-input' type='number' name='stok_produk' style='width: 20em'>
                 </td>
             </tr>
 
             <tr>
             <td>Harga Jual</td>
             <td>
-                <input id="price" class='form-user-input' name='deks_produk'>
+                <input id="price" class='form-user-input' name='deks_produk' style='width: 20em'>
             </td>
             </tr>
         
             </tr>
             <tr>
-                <td colspan='2' style='text-align: right;'>
+                <td colspan='2' style='text-align: center;'>
                     <button id="btn" type='submit'>Kirim Data</button>
                 </td>
             </tr>
         </table>
     </form>
+    </div>
+    </div>
 
-</main>
 
 @endsection
 @push('scripts')
