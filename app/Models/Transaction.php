@@ -9,8 +9,11 @@ class Transaction extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-        'user_id', 'total_price', 'status'
-    ];
+    protected $guarded = [];
+
+    public function transaction_items()
+    {
+        return $this->hasMany(TransactionItem::class);
+    }
 
 }
