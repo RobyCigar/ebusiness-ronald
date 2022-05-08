@@ -36,6 +36,18 @@ Route::get('auth/register', function () {
     return view('auth/register');
 })->name('register');
 
-Route::get('/dashboard/aturmenu', function (){
-    return view ('dashboard/aturmenu');
+Route::get('/menu/aturmenu', function (){
+    return view ('menu/tambah');
 })->name('aturmenu');
+
+Route::get('/dashboard/editpegawai', function (){
+    return view ('dashboard/editpegawai');
+})->name('editpegawai');
+
+Route::get('/transaksi/tambahtransaksi', function (){
+    return view ('/transaksi/tambahtrans');
+})->name('tambahtransaksi');
+
+Route::get('/menu/daftarmenu', function (){
+    return view ('menu/index');
+})->name('daftarmenu');

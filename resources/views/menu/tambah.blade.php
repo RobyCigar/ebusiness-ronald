@@ -7,9 +7,15 @@
     }
 </script>
 <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+<script src="https://kit.fontawesome.com/b1ea2b304c.js" crossorigin="anonymous"></script>
 
 <style>
-
+.copyright
+{
+  position: absolute;
+  margin-top: 30px;
+  right: 16px;
+}
 </style>
 @endpush
 
@@ -20,61 +26,73 @@
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
 
-<div class="d-flex justify-content-center" style="color:black;margin-top:20px;font-family:
-Noto Sans TC;">
- <h3>ATUR MENU</h3>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 px-2 pe-2 mt-2">
+            <a href="{{route('daftarmenu')}}">
+                <i class="fa-solid fa-arrow-left fa-3x"></i>
+            </a>
+        </div>
+        <div class="d-flex justify-content-center bold col-lg-2 px-0 pe-2">
+            <div style="color:black;margin-top:15px;font-weight: 900;font-family:'Noto Sans'">
+                <h2>ATUR MENU</h2>
+            </div>
+        </div>
+   </div>
+</div>  
+
 <hr>
 
-<div class="d-flex justify-content-center text-align-center">
-    <div class="container col-4" style="color:white;background:#001D49; padding:10px; border-radius:10px;">
-    <form action='#create_data' id='data_list'>
-        <table border='0'>
-            <tr>
-                <td>Nama Produk</td>
-                <td>
-                    <input id="name" class='form-user-input' type='text' name='nama_produk' style='width: 20em'>
-                </td>
-            </tr>
-            <tr>
-
-            <tr>
-                <td>Dekripsi Produk</td>
-                <td>
-                    <input id="description" class='form-user-input' type='text' name='harga_produk' style='width: 20em'>
-                </td>
-            </tr>
-            <tr>
-            <tr>
-                <td>Stok Produk</td>
-                <td>
-                    <input id="stock" class='form-user-input' type='number' name='stok_produk' style='width: 20em'>
-                </td>
-            </tr>
-            <tr>
-                <td>HPP</td>
-                <td>
-                    <input id="production_cost" class='form-user-input' type='number' name='stok_produk' style='width: 20em'>
-                </td>
-            </tr>
-
-            <tr>
-            <td>Harga Jual</td>
-            <td>
-                <input id="price" class='form-user-input' name='deks_produk' style='width: 20em'>
-            </td>
-            </tr>
-        
-            </tr>
-            <tr>
-                <td colspan='2' style='text-align: center;'>
-                    <button id="btn" type='submit'>Kirim Data</button>
-                </td>
-            </tr>
-        </table>
+<div class="d-flex justify-content-center" style="color:black;margin-top:10px;font-family:'Noto Sans'">
+ <h4>TAMBAH MENU</h4>
+</div>
+<section class="row d-flex align-items-center justify-content-center" style="color:white; margin-top:20px;" >
+    <form class="card px-5 py-4 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit" style="background-color:#001D49;">
+   
+    <div class="my-1">
+    <label>Nama Produk</label>
+            <div class="col-sm-20">
+            <input id="name" class='form-user-input' type='text' name='nama_produk'>
+            </div>
+            </div>
+        <div class="my-1">
+            <label>Deskripsi Produk</label>
+            <div class="col-sm-20">
+            <input id="description" class='form-user-input' type='text' name='decs_produk'>
+            </div>
+        </div>
+        <div class="my-1">
+            <label>Stok Produk</label>
+            <div class="col-sm-20">
+            <input id="stock" class='form-user-input' type='number' name='stok_produk'>
+            </div>
+        </div>
+        <div class="my-1">
+            <label>HPP</label>
+            <div class="col-sm-20">
+            <input id="production_cost" class='form-user-input' type='number' name='hpp_produk'>
+            </div>
+        </div>
+        <div class="my-1">
+            <label>Harga Jual</label>
+            <div class="col-sm-20">
+            <input id="price" class='form-user-input' name='price_produk'>
+            </div>
+        </div>
     </form>
-    </div>
-    </div>
+    <div class="d-flex align-items-center justify-content-center my-2 mb-5">
+            <div class="col-sm-20">
+            <button id="btn" type='submit' class="btn btn-primary my-2" style="align-items: center;">Tambahankan Menu</button>
+            </div>
+        </div>
+</section>
+
+<div class="copyright">
+    <p>
+        <img width="10" src="{{asset('assets/copyright.svg')}}" alt="logo copyright">
+        Copyright Kasironald 2022
+    </p>
+</div>
 
 
 @endsection

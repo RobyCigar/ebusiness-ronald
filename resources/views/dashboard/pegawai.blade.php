@@ -16,7 +16,14 @@
 <!-- Bagian Navbar Sidebar Samping -->
 <x-sidebar />
 <!-- End Bagian Navbar Sidebar Samping -->
-
+<style>
+.copyright
+{
+  position: absolute;
+  margin-top: 150px;
+  right: 16px;
+}
+</style>
 <!-- Isi Konten Dashboard -->
 
 <div class="container">
@@ -45,10 +52,13 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nama Pegawai</th>
+                                <th scope="col">Shift</th>
+                                <th scope="col">Telefon</th>
                                 <th scope="col">Last Updated</th>
                                 <th scope="col">Last Created</th>
+                                <th scope="col"></th>
                                 <!-- <th scope="col">Action</th> -->
                             </tr>
                         </thead>
@@ -57,8 +67,14 @@
                             <tr>
                                 <td scope="row">{{$loop->iteration}}</td>
                                 <td>{{$user->email}}</td>
+                                <td>08.00 - 15.00</td>
+                                <td>089652947699</td>
                                 <td>{{\Carbon\Carbon::parse($user->updated_at)->diffForHumans()}}</td>
                                 <td>{{\Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
+                                <td>
+						<button class="btn btn-success btn-sm"> <i class="fa fa-edit"></i> Edit </button>
+						<button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus </button>
+				</td>
                                 <!-- <td>
                                     <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                         @csrf
@@ -75,5 +91,10 @@
             </div>
         </div>
     </div>
-
+    <div class="copyright">
+    <p>
+        <img width="10" src="{{asset('assets/copyright.svg')}}" alt="logo copyright">
+        Copyright Kasironald 2022
+    </p>
+</div>
     @endsection

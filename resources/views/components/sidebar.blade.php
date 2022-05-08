@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link px-4 mt-3  active">
+                <a href="{{route('tambahtransaksi')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-regular fa-money-bill-1"></i>
                     <span>Transaksi</span>
                 </a>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('aturmenu')}}" class="nav-link px-4 mt-3  active">
+                <a href="{{route('daftarmenu')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-square-plus"></i>
                     <span>Atur Menu</span>
                 </a>

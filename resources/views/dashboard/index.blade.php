@@ -39,6 +39,12 @@
         max-height: 50vh;
     }
 
+    .copyright
+{
+    position: absolute;
+  right: 16px;
+}
+
     @media screen and (max-width: 1000px) {
         #chart-left {
             max-width: 100vw;
@@ -105,6 +111,14 @@
 </main>
 
 <!-- Start chart -->
+
+<div class="copyright">
+    <p>
+        <img width="10" src="{{asset('assets/copyright.svg')}}" alt="logo copyright">
+        Copyright Kasironald 2022
+    </p>
+</div>
+
 
 @endsection
 
