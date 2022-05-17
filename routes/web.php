@@ -51,3 +51,11 @@ Route::get('/transaksi/tambahtransaksi', function (){
 Route::get('/menu/daftarmenu', function (){
     return view ('menu/index');
 })->name('daftarmenu');
+
+Route::get('/transaksi/addmenu', function (){
+    return view ('/transaksi/addmenu');
+})->name('addmenu');
+
+Route::get('/transaksi/history', function (){
+    return view ('/transaksi/history');
+})->name('history');

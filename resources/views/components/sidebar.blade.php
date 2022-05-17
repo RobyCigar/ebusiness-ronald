@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('tambahtransaksi')}}" class="nav-link px-4 mt-3  active">
+                <a href="{{route('addmenu')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-regular fa-money-bill-1"></i>
                     <span>Transaksi</span>
                 </a>

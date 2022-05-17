@@ -57,7 +57,7 @@ aside {
         </div>
         <div class="d-flex justify-content-center bold col-lg-4 px-0 pe-2">
             <div style="color:black;margin-top:15px;font-weight: bold;">
-                <h2>TRANSAKSI</h2>
+                <h2>HISTORY</h2>
             </div>
         </div>
         <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('history')}}" role="button">History</a>
@@ -71,45 +71,42 @@ aside {
     <div class="card-body">
         <table class="table" data-filter-control="true" data-show-search-clear-button="true" border="1">
         <tr style="background-color:#001D49; color:white;">
+            <th>Id Transaksi</th>
             <th>Jenis Pesanan</th>
-            <th>QTY</th>
-            <th>Harga Per-Unit</th>
-            <th>Sub Total</th>
+            <th>Tanggal</th>
+            <th>Total</th>
+            <th>Bayar</th>
+            <th>Keterangan</th>
         </tr>
         <tr>
+            <th>Id001</th>
             <th>Jus Anggur</th>
+            <th>20/02/2021</th>
+            <th>Rp 30000</th>
+            <th>Rp 50000</th>
             <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
+            <a class="btn btn-primary" href="#" role="button">Edit</a>
+            </th>
         </tr>
         <tr>
-            <th>Jus Apel</th>
+            <th>Id002</th>
+            <th>Jus Mangga</th>
+            <th>20/02/2021</th>
+            <th>Rp 20000</th>
+            <th>Rp 30000</th>
             <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
+            <a class="btn btn-primary" href="#" role="button">Edit</a>
+            </th>
         </tr>
-        <th>Jus Jambu</th>
+        <tr>
+            <th>Id003</th>
+            <th>Jus Jambu</th>
+            <th>20/02/2021</th>
+            <th>Rp 10000</th>
+            <th>Rp 10000</th>
             <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
+            <a class="btn btn-primary" href="#" role="button">Edit</a>
+            </th>
         </tr>
         </table>
     </div>
@@ -132,7 +129,12 @@ aside {
         <h6 class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
         <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
             <div class="d-flex">
-                <button id="btn" type='submit' class="btn btn-primary mt-2" style="align-items: center;">Enter</button>
+            <div class="btn btn-primary mt-2 ms-3">
+            <i class="fa-solid fa-trash"></i>
+            </div>
+            </div>
+            <div class="d-flex">
+                <button id="btn" type='submit' class="btn btn-primary mt-2 ms-3" style="align-items: center;">EDIT</button>
                 <div class="btn btn-primary mt-2 ms-3">
                 <i class="fa-solid fa-print"></i>
                 </div>
