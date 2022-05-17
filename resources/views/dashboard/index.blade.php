@@ -71,13 +71,13 @@
         </div>
     </div>
     <section class="d-flex my-4 flex-column flex-sm-row align-items-center align-items-sm-stretch">
-        <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem; back">
+        <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
             <div class="card-header text-center">
                 <i class="fa-solid fa-circle-dollar-to-slot"></i>
                 Omset
             </div>
             <div class="card-body row align-items-center">
-                <h2 class="card-title font-weight-bold">10000 IDR</h2>
+                <h2 id="omset" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
         <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
@@ -86,7 +86,7 @@
                 Keuntungan
             </div>
             <div class="card-body row align-items-center">
-                <h2 class="card-title font-weight-bold">10000 IDR</h2>
+                <h2 id="keuntungan" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
         <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
@@ -124,6 +124,40 @@
 
 
 @push('scripts')
+<script>
+    // fetch omset, keuntungan, omset, dan total penjualan
+    $(document).ready(function() {
+            $.ajax({
+                url: "{{route('omset')}}",
+                type: "GET",
+                success: function(data) {
+                    console.log('here', data)
+                    $('#omset').text(`${data} IDR`);
+                },
+                error: function(data) {
+                    let alert = $('div[role="alert"]')
+                    alert.addClass('alert alert-danger alert-dismissible')
+                    alert.html(data.responseJSON.message)
+                    alert.show()
+                }
+            })
+
+            $.ajax({
+                url: "{{route('keuntungan')}}",
+                type: "GET",
+                success: function(data) {
+                    console.log('here', data)
+                    $('#keuntungan').text(`${data} IDR`);
+                },
+                error: function(data) {
+                    let alert = $('div[role="alert"]')
+                    alert.addClass('alert alert-danger alert-dismissible')
+                    alert.html(data.responseJSON.message)
+                    alert.show()
+                }
+            })
+    })
+</script>
 <script>
     const ctx1 = document.getElementById('chart-left');
     const ctx2 = document.getElementById('chart-right');

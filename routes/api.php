@@ -46,9 +46,9 @@ Route::group([
     Route::resource('product', ProductController::class);
     Route::get('user', [AuthController::class, 'index']);
     Route::resource('transaction', TransactionController::class);
-    Route::get('keuntungan', [MouthfulQueries::class, 'keuntungan']);
-    Route::get('omset', [MouthfulQueries::class, 'omset']);
-    Route::get('total_transaction', [MouthfulQueries::class, 'total_transaction']);
+    Route::get('keuntungan', [MouthfulQueries::class, 'keuntungan'])->name('keuntungan');
+    Route::get('omset', [MouthfulQueries::class, 'omset'])->name('omset');
+    Route::get('total_transaction', [MouthfulQueries::class, 'total_transaction'])->name('total_transaction');
 
 
 });
