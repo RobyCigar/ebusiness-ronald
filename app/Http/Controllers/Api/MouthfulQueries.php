@@ -8,17 +8,18 @@ use App\Http\Controllers\Controller;
 class MouthfulQueries extends Controller
 {
 
+    // return number
     public function get_keuntungan()
     {
         $keuntungan = DB::table('transaction_items')
         ->select(DB::raw('SUM(price * quantity) as total_keuntungan'))
-        ->get();
-        return $keuntungan;
+        ->first() ?? 0;
+        return $keuntungan->total_keuntungan ?? 0;
     }
 
     public function keuntungan()
     {
-        $keuntungan = $this->keuntungan();
+        $keuntungan = $this->get_keuntungan();
         return response()->json($keuntungan);
     }
 
@@ -29,9 +30,9 @@ class MouthfulQueries extends Controller
         $production_cost = DB::table('transaction_items')
             ->join('products', 'transaction_items.product_id', '=', 'products.id')
             ->select(DB::raw('SUM(products.production_cost) as total_production_cost'))
-            ->get();
+            ->first();
 
-        $omset = (int) $keuntungan[0]->total_keuntungan + (int) $production_cost[0]->total_production_cost;
+        $omset = $keuntungan + (int) $production_cost->total_production_cost;
 
         return response()->json($omset);
     }
@@ -39,7 +40,7 @@ class MouthfulQueries extends Controller
     public function total_transaction() {
         $total_transaction = DB::table('transactions')
             ->select(DB::raw('COUNT(id) as total_transaction'))
-            ->get();
+            ->first();
         return response()->json($total_transaction);
     }
 }

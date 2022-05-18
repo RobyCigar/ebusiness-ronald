@@ -9,8 +9,7 @@
 <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
 
 <style>
-.copyright
-{
+.copyright {
   position: absolute;
   margin-top: 30px;
   right: 16px;

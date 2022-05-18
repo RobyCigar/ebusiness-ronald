@@ -1,9 +1,6 @@
 <?php
-
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PegawaiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +18,11 @@ Route::get('/', function () {
 
 // Auth::routes();
 
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// dashboard
 
-    Route::resource('/users', UserController::class);
-});
-
+Route::get('/dashboard', function() {
+    return view('dashboard.index');
+})->name('dashboard');
 
 Route::get('auth/login', function () {
     return view('auth/login');
@@ -36,26 +32,35 @@ Route::get('auth/register', function () {
     return view('auth/register');
 })->name('register');
 
-Route::get('/menu/aturmenu', function (){
-    return view ('menu/tambah');
-})->name('aturmenu');
+// pegawai
 
-Route::get('/dashboard/editpegawai', function (){
-    return view ('dashboard/editpegawai');
-})->name('editpegawai');
+Route::resource('pegawai', PegawaiController::class);
 
-Route::get('/transaksi/tambahtransaksi', function (){
-    return view ('/transaksi/tambahtrans');
-})->name('tambahtransaksi');
 
-Route::get('/menu/daftarmenu', function (){
+Route::get('/pegawai/edit', function (){
+    return view ('pegawai/edit');
+})->name('pegawai.edit');
+
+// menu
+
+Route::get('/menu', function (){
     return view ('menu/index');
-})->name('daftarmenu');
+})->name('menu.index');
 
-Route::get('/transaksi/addmenu', function (){
-    return view ('/transaksi/addmenu');
-})->name('addmenu');
+Route::get('/menu/tambah', function (){
+    return view ('menu/tambah');
+})->name('menu.tambah');
+
+// transaksi
+
+Route::get('/transaksi', function (){
+    return view ('transaksi/index');
+})->name('transaksi');
+
+Route::get('/transaksi/tambah', function (){
+    return view ('transaksi/tambah');
+})->name('transaksi.tambah');
 
 Route::get('/transaksi/history', function (){
-    return view ('/transaksi/history');
-})->name('history');
+    return view ('transaksi/history');
+})->name('transaksi.history');

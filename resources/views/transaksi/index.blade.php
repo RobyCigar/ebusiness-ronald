@@ -52,15 +52,15 @@ aside {
 <div class="container">
     <div class="row" style="position: relative;">
         <div class="col-lg-4 px-2 pe-2 mt-2">
-        <a class="btn btn-primary btn-lg" href="{{route('tambahtransaksi')}}" role="button">Pesanan</a>
-        <a class="btn btn-primary btn-lg" href="{{route('addmenu')}}" role="button">Add Menu</a>
+        <a class="btn btn-primary btn-lg" href="{{route('transaksi.tambah')}}" role="button">Pesanan</a>
+        <a class="btn btn-primary btn-lg" href="{{route('menu.tambah')}}" role="button">Add Menu</a>
         </div>
         <div class="d-flex justify-content-center bold col-lg-4 px-0 pe-2">
             <div style="color:black;margin-top:15px;font-weight: bold;">
                 <h2>TRANSAKSI</h2>
             </div>
         </div>
-        <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('history')}}" role="button">History</a>
+        <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('transaksi.history')}}" role="button">History</a>
    </div>
 </div>  
 
@@ -82,7 +82,7 @@ aside {
         </div>
         <div class="col-lg-3">
         <div class="d-flex justify-content-between">
-            <a class="btn btn-dark mt-3" href="{{route('aturmenu')}}" role="button">TAMBAHKAN + </a>
+            <a class="btn btn-dark mt-3" href="{{route('menu.index')}}" role="button">TAMBAHKAN + </a>
             </div>
         </div>
     </div>

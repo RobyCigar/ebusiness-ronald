@@ -72,11 +72,11 @@
                                 <td>{{\Carbon\Carbon::parse($user->updated_at)->diffForHumans()}}</td>
                                 <td>{{\Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
                                 <td>
-						<button class="btn btn-success btn-sm"> <i class="fa fa-edit"></i> Edit </button>
-						<button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus </button>
+						<!-- <button class="btn btn-success btn-sm"> <i class="fa fa-edit"></i> Edit </button>
+						<button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus </button> -->
 				</td>
                                 <!-- <td>
-                                    <form action="{{route('users.destroy',$user->id)}}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>

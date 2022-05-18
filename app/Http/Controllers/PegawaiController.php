@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 
-class UserController extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class UserController extends Controller
         Paginator::useBootstrap();
         $users = User::paginate(5);
 
-        return view('dashboard.pegawai', compact('users'));
+        return view('pegawai/index', compact('users'));
     }
 
     /**

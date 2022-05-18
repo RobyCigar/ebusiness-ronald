@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @push('styles')
-<!-- <script>
+<script>
     if (!localStorage.getItem('token')) {
         window.location.replace("{{route('login')}}");
     }
 </script>
 <script src="{{asset('js/chart.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/dashboard.css')}}"> -->
+<link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
 
 <style>
     .card {
@@ -64,6 +64,8 @@
 <!-- Isi Konten Dashboard -->
 
 <main class="">
+    <div class="" role="alert" style="display:none;">
+    </div>
     <div class="row">
         <div class="col-md-12 mt-5">
             <h2>Dashboard</h2>
@@ -130,13 +132,13 @@
                 url: "{{route('api.omset')}}",
                 type: "GET",
                 success: function(data) {
-                    console.log('here', data)
                     $('#omset').text(`${data} IDR`);
                 },
                 error: function(data) {
+                    console.log('error', data)
                     let alert = $('div[role="alert"]')
                     alert.addClass('alert alert-danger alert-dismissible')
-                    alert.html(data.responseJSON.message)
+                    alert.html(JSON.stringify(data.responseJSON.message))
                     alert.show()
                 }
             })
@@ -145,13 +147,12 @@
                 url: "{{route('api.keuntungan')}}",
                 type: "GET",
                 success: function(data) {
-                    console.log('here', data)
                     $('#keuntungan').text(`${data} IDR`);
                 },
                 error: function(data) {
                     let alert = $('div[role="alert"]')
                     alert.addClass('alert alert-danger alert-dismissible')
-                    alert.html(data.responseJSON.message)
+                    alert.html(JSON.stringify(data.responseJSON.message))
                     alert.show()
                 }
             })
