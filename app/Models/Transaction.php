@@ -11,4 +11,9 @@ class Transaction extends Model
     
     protected $guarded = [];
 
+    public function transaction_items()
+    {
+        return $this->hasMany(TransactionItem::class);
+    }
+
 }

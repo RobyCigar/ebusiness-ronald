@@ -12,11 +12,13 @@
 <style>
     .card {
         /* background: hsl(216, 100%, 14%); */
-        border-radius: 15px;
+        border-radius: 12px;
         width: 18rem;
         text-align: center;
         margin: 2px 20px;
         height: 15rem;
+        background: #151F2E;
+        color: white;
     }
 
     .card-header {
@@ -37,6 +39,11 @@
         max-height: 50vh;
     }
 
+    .copyright {
+        position: absolute;
+        right: 16px;
+    }
+
     @media screen and (max-width: 1000px) {
         #chart-left {
             max-width: 100vw;
@@ -54,10 +61,11 @@
 
 <!-- Load sidebar component -->
 <x-sidebar/>
-
 <!-- Isi Konten Dashboard -->
 
 <main class="">
+    <div class="" role="alert" style="display:none;">
+    </div>
     <div class="row">
         <div class="col-md-12 mt-5">
             <h2>Dashboard</h2>
@@ -70,7 +78,7 @@
                 Omset
             </div>
             <div class="card-body row align-items-center">
-                <h2 class="card-title font-weight-bold">10000 IDR</h2>
+                <h2 id="omset" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
         <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
@@ -79,7 +87,7 @@
                 Keuntungan
             </div>
             <div class="card-body row align-items-center">
-                <h2 class="card-title font-weight-bold">10000 IDR</h2>
+                <h2 id="keuntungan" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
         <div class="d-flex card mb-3 shadow-lg" style="max-width: 18rem;">
@@ -105,11 +113,52 @@
 
 <!-- Start chart -->
 
+<div class="copyright">
+    <p>
+        <img width="10" src="{{asset('assets/copyright.svg')}}" alt="logo copyright">
+        Copyright Kasironald 2022
+    </p>
+</div>
+
+
 @endsection
 
 
 @push('scripts')
 <script>
+    // fetch omset, keuntungan, omset, dan total penjualan
+    $(document).ready(function() {
+            $.ajax({
+                url: "{{route('api.omset')}}",
+                type: "GET",
+                success: function(data) {
+                    $('#omset').text(`${data} IDR`);
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    let alert = $('div[role="alert"]')
+                    alert.addClass('alert alert-danger alert-dismissible')
+                    alert.html(JSON.stringify(data.responseJSON.message))
+                    alert.show()
+                }
+            })
+
+            $.ajax({
+                url: "{{route('api.keuntungan')}}",
+                type: "GET",
+                success: function(data) {
+                    $('#keuntungan').text(`${data} IDR`);
+                },
+                error: function(data) {
+                    let alert = $('div[role="alert"]')
+                    alert.addClass('alert alert-danger alert-dismissible')
+                    alert.html(JSON.stringify(data.responseJSON.message))
+                    alert.show()
+                }
+            })
+    })
+
+    // graph thing
     const ctx1 = document.getElementById('chart-left');
     const ctx2 = document.getElementById('chart-right');
     Chart.Chart.register(...Chart.registerables);

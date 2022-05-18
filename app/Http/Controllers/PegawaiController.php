@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Pagination\Paginator;
 
-class TransactionController extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        Paginator::useBootstrap();
+        $users = User::paginate(5);
+
+        return view('pegawai/index', compact('users'));
     }
 
     /**

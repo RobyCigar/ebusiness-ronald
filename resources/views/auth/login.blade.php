@@ -11,10 +11,10 @@
 </div>
 
 <!--Bagian Card Log In dan Sign Up-->
-<section class="row d-flex align-items-center vh-100 justify-content-center">
-    <form class="card px-5 py-5 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit">
+<section class="row d-flex align-items-center vh-100 justify-content-center" style="color:white;" >
+    <form class="card px-5 py-4 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit" style="background-color:#001D49;">
         <div id="namelogin">
-            <h2 class="fw-bold text-center">Login</h2>
+            <h2 class="fw-bold text-center" style="color:white;">Login</h2>
         </div>
         <div class="my-2">
             <label for="email" class="form-label">Email</label>
@@ -27,8 +27,10 @@
             </div>
         </div>
         <label class="mb-2">Buat akun? <a href="{{route('register')}}"> Klik disini</a></label>
-        <div class="my-2">
-            <button type="button" class="btn btn-primary" id="buttonlogin">Login</button>
+        <div class="my-2 mb-5">
+            <div class="col-sm-20">
+            <button type="button" class="btn btn-primary my-2" style="align-items: center;" id="buttonlogin">Login</button>
+            </div>
         </div>
     </form>
 </section>

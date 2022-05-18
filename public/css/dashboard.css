@@ -20,12 +20,6 @@ button {
   font-size: 30px;
 }
 
-#omset {
-  background-color: hsl(216, 100%, 14%);
-  color: aliceblue;
-  height: 150px;
-  border-radius: 10px;
-}
 
 #tanggal {
   background-color: hsl(0, 0%, 100%);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -56,10 +56,20 @@ class AuthController extends Controller
      */
     protected function register()
     {
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'start_session' => 'required|integer',
+            'end_session' => 'required|integer',
+        ]);
+
         return User::create([
             'name' => request('name'),
             'email' => request('email'),
             'password' => Hash::make(request('password')),
+            'start_session' => request('start_session'),
+            'end_session' => request('end_session'),
         ]);
     }
 

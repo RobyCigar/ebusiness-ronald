@@ -3,7 +3,7 @@
     <nav class="navbar-dark" style="font-size: 18px;">
         <ul class="navbar-nav">
             <li>
-                <a href="#" class="nav-link px-4 mt-4 active">
+                <a href="#" class="nav-link px-4 mt-4 active" style="font-size: 25px;">
                     <span>Kasironald</span>
                     </i>
                 </a>
@@ -16,19 +16,19 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link px-4 mt-3  active">
+                <a href="{{route('transaksi')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-regular fa-money-bill-1"></i>
                     <span>Transaksi</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('users.index')}}" class="nav-link px-4 mt-3  active">
+                <a href="{{route('pegawai.index')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-user-group"></i>
                     <span>Pegawai</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link px-4 mt-3  active">
+                <a href="{{route('menu.index')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-square-plus"></i>
                     <span>Atur Menu</span>
                 </a>
