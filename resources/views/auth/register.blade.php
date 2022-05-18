@@ -112,11 +112,13 @@
             let end_session = '';
 
             if(shift = "1") {
-                start_session = new Date()
-                end_session = new Date()
+                start_session = 8;
+                end_session = 16;
+            } else if(shift = "2"){
+                start_session = 15
+                end_session = 22
             } else {
-                start_session = new Date()
-                end_session = new Date()
+                console.error("pemberian shift salah, value harus 1 atau 2");
             }
 
             if (password !== confirmpassword) {

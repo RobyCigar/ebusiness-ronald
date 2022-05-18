@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @push('styles')
-<script>
+<!-- <script>
     if (!localStorage.getItem('token')) {
         window.location.replace("{{route('login')}}");
     }
 </script>
 <script src="{{asset('js/chart.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+<link rel="stylesheet" href="{{asset('css/dashboard.css')}}"> -->
 
 <style>
     .card {
@@ -39,11 +39,10 @@
         max-height: 50vh;
     }
 
-    .copyright
-{
-    position: absolute;
-  right: 16px;
-}
+    .copyright {
+        position: absolute;
+        right: 16px;
+    }
 
     @media screen and (max-width: 1000px) {
         #chart-left {
@@ -128,7 +127,7 @@
     // fetch omset, keuntungan, omset, dan total penjualan
     $(document).ready(function() {
             $.ajax({
-                url: "{{route('omset')}}",
+                url: "{{route('api.omset')}}",
                 type: "GET",
                 success: function(data) {
                     console.log('here', data)
@@ -143,7 +142,7 @@
             })
 
             $.ajax({
-                url: "{{route('keuntungan')}}",
+                url: "{{route('api.keuntungan')}}",
                 type: "GET",
                 success: function(data) {
                     console.log('here', data)
@@ -157,8 +156,8 @@
                 }
             })
     })
-</script>
-<script>
+
+    // graph thing
     const ctx1 = document.getElementById('chart-left');
     const ctx2 = document.getElementById('chart-right');
     Chart.Chart.register(...Chart.registerables);

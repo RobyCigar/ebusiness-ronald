@@ -28,27 +28,27 @@ Route::get('/', function () {
 });
 
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('login', [AuthController::class, 'login'])->name('api.login');
-    Route::post('register', [AuthController::class, 'register'])->name('api.register');
-    Route::post('logout', [AuthController::class, 'logout'])->name('api.logout');
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);
-});
+Route::name('api.')->group(function () {
 
-Route::group([ 
-    // 'middleware' => 'api'
-], function () {
+    Route::group([
+        'middleware' => 'api',
+        'prefix' => 'auth'
+    ], function ($router) {
+        Route::post('login', [AuthController::class, 'login'])->name('login');
+        Route::post('register', [AuthController::class, 'register'])->name('register');
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
+        Route::post('me', [AuthController::class, 'me'])->name('me');
+    });
+    
+
     Route::resource('attendance', AttendanceController::class);
     Route::resource('product', ProductController::class);
-    Route::get('user', [AuthController::class, 'index']);
     Route::resource('transaction', TransactionController::class);
+
+    Route::get('user', [AuthController::class, 'index'])->name('user');
     Route::get('keuntungan', [MouthfulQueries::class, 'keuntungan'])->name('keuntungan');
     Route::get('omset', [MouthfulQueries::class, 'omset'])->name('omset');
     Route::get('total_transaction', [MouthfulQueries::class, 'total_transaction'])->name('total_transaction');
-
 
 });
