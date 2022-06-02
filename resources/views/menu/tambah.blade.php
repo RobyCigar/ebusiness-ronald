@@ -67,6 +67,12 @@
             </div>
         </div>
         <div class="my-1">
+            <label>Gambar</label>
+            <div class="col-sm-20">
+            <input id="image" class='w-100 form-user-input' name='image'>
+            </div>
+        </div>
+        <div class="my-1">
             <label>Harga Jual</label>
             <div class="col-sm-20">
             <input id="price" class='w-100 form-user-input' name='price_produk'>
@@ -101,8 +107,9 @@
                 const price = parseInt($('#price').val())
                 const stock = parseInt($('#stock').val())
                 const production_cost = parseInt($('#production_cost').val())
+                const image = $('#image').val()
                 
-                const data = {name, description, price, stock, production_cost}
+                const data = {name, description, price, stock, production_cost, image}
 
                 $.ajax("{{route('api.product.store')}}", {
                     type : 'POST',

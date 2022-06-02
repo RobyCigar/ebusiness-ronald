@@ -82,7 +82,21 @@ input.qtyminus { width:25px; height:25px;}
 @endsection
 @push('scripts')
     <script>
+            function delete_item(id) {
+                $.ajax({
+                url: `{{route('api.product.index')}}/${id}`,
+                method: 'DELETE',
+                dataType: 'json',
+                headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            })
+            }
         $(document).ready(($) => {
+        
             // $('.quantity').on('click', '.plus', function(e) {
             //     let $input = $(this).prev('input.qty');
             //     let val = parseInt($input.val());
@@ -114,7 +128,7 @@ input.qtyminus { width:25px; height:25px;}
                                     <td>${data[i].price}</td>
                                     <td>
                                         <a class="btn btn-primary" href="#">Edit</a>
-                                        <a class="btn btn-danger" href="#">Hapus</a>
+                                        <a class="btn btn-danger" onclick="delete_item(${data[i].id})" href="#">Hapus</a>
                                     </td>
                                 </tr>
                                 `;
@@ -122,6 +136,8 @@ input.qtyminus { width:25px; height:25px;}
                     $('#menu').html(html);
                 }
             });
+
+
     });
 
 
