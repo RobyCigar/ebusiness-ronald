@@ -96,7 +96,7 @@
                 Jumlah Penjualan
             </div>
             <div class="card-body row align-items-center">
-                <h2 class="card-title font-weight-bold">10000</h2>
+                <h2 id="total_transaction" class="card-title font-weight-bold">10000</h2>
             </div>
         </div>
     </section>
@@ -156,6 +156,23 @@
                     alert.show()
                 }
             })
+
+            $.ajax({
+                url: "{{route('api.total_transaction')}}",
+                type: "GET",
+                success: function(data) {
+                    console.log(data)
+                    $('#total_transaction').text(`${data.total_transaction} IDR`);
+                },
+                error: function(data) {
+                    let alert = $('div[role="alert"]')
+                    alert.addClass('alert alert-danger alert-dismissible')
+                    alert.html(JSON.stringify(data.responseJSON.message))
+                    alert.show()
+                }
+            })
+
+
     })
 
     // graph thing

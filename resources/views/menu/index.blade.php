@@ -37,9 +37,9 @@ input.qtyminus { width:25px; height:25px;}
 
 <div class="container" style="font-family:'Noto Sans'">
     <div class="d-flex justify-content-center" style="color:black;margin-top:20px;;">
-    <h2>ATUR MENU</h2>
+    <h2>Daftar MENU</h2>
     </div>
-        <a href="{{route('aturmenu')}}" class="btn"  
+        <a href="{{route('menu.tambah')}}" class="btn"  
         style="background-color:#001D49;color:white;">Tambah Menu</a>
     </div>
 <hr>
@@ -57,47 +57,18 @@ input.qtyminus { width:25px; height:25px;}
                 </form>
             </div>
 <table class="table" data-filter-control="true" data-show-search-clear-button="true" border="1">
-<tr style="background-color:#001D49; color:white;">
-    <th>Nama Pesanan</th>
-    <th>Stok/Porsi</th>
-    <th>HPP</th>
-    <th>Harga Jual</th>
-</tr>
-<tr>
-    <th>Jus Anggur</th>
-    <th>
-    <form id='myform' method='POST' class='quantity' action='#'>
-  <input type='button' value='-' class='qtyminus minus' field='quantity' />
-  <input type='text' name='quantity' value='1' class='qty' />
-  <input type='button' value='+' class='qtyplus plus' field='quantity' />
-</form>
-</th>
-    <th>Rp 5000</th>
-    <th>Rp 10000</th>
-</tr>
-<tr>
-    <th>Jus Apel</th>
-    <th>
-    <form id='myform' method='POST' class='quantity' action='#'>
-  <input type='button' value='-' class='qtyminus minus' field='quantity' />
-  <input type='text' name='quantity' value='1' class='qty' />
-  <input type='button' value='+' class='qtyplus plus' field='quantity' />
-</form>
-</th>
-    <th>Rp 5000</th>
-    <th>Rp 12000</th>
-</tr>
-<th>Jus Jambu</th>
-    <th>
-    <form id='myform' method='POST' class='quantity' action='#'>
-  <input type='button' value='-' class='qtyminus minus' field='quantity' />
-  <input type='text' name='quantity' value='1' class='qty' />
-  <input type='button' value='+' class='qtyplus plus' field='quantity' />
-</form>
-</th>
-    <th>Rp 5000</th>
-    <th>Rp 10000</th>
-</tr>
+    <thead>
+        <tr style="background-color:#001D49; color:white;">
+            <th>Nama Pesanan</th>
+            <th>Stok/Porsi</th>
+            <th>HPP</th>
+            <th>Harga Jual</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="menu">
+
+    </tbody>
 </table>
 </div>
 </div>
@@ -111,22 +82,50 @@ input.qtyminus { width:25px; height:25px;}
 @endsection
 @push('scripts')
     <script>
-        jQuery(document).ready(($) => {
-        $('.quantity').on('click', '.plus', function(e) {
-            let $input = $(this).prev('input.qty');
-            let val = parseInt($input.val());
-            $input.val( val+1 ).change();
-        });
- 
-        $('.quantity').on('click', '.minus', 
-            function(e) {
-            let $input = $(this).next('input.qty');
-            var val = parseInt($input.val());
-            if (val > 0) {
-                $input.val( val-1 ).change();
-            } 
-        });
+        $(document).ready(($) => {
+            // $('.quantity').on('click', '.plus', function(e) {
+            //     let $input = $(this).prev('input.qty');
+            //     let val = parseInt($input.val());
+            //     $input.val( val + 1 ).change();
+            // });
+    
+            // $('.quantity').on('click', '.minus', 
+            //     function(e) {
+            //     let $input = $(this).next('input.qty');
+            //     var val = parseInt($input.val());
+            //     if (val > 0) {
+            //         $input.val( val - 1 ).change();
+            //     } 
+            // });
+            $.ajax({
+                url: "{{route('api.product.index')}}",
+                method: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    var html = '';
+                    var i;
+                    for(i=0;i<data.length;i++){
+                        html += `
+                                <tr>
+                                    <td>${data[i].name}</td>
+                                    <td>${data[i].stock}</td>
+                                    <td>${data[i].production_cost}</td>
+                                    <td>${data[i].price}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="#">Edit</a>
+                                        <a class="btn btn-danger" href="#">Hapus</a>
+                                    </td>
+                                </tr>
+                                `;
+                    }
+                    $('#menu').html(html);
+                }
+            });
     });
+
+
+    
     </script>
 
 @endpush

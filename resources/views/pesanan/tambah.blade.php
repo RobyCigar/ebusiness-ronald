@@ -52,12 +52,11 @@ aside {
 <div class="container">
     <div class="row" style="position: relative;">
         <div class="col-lg-4 px-2 pe-2 mt-2">
-        <a class="btn btn-primary btn-lg" href="{{route('transaksi.tambah')}}" role="button">Pesanan</a>
-        <a class="btn btn-primary btn-lg" href="{{route('menu.tambah')}}" role="button">Add Menu</a>
+        <a class="btn btn-primary btn-lg" href="{{route('pesanan.index')}}" role="button">Tambah Juice</a>
         </div>
         <div class="d-flex justify-content-center bold col-lg-4 px-0 pe-2">
             <div style="color:black;margin-top:15px;font-weight: bold;">
-                <h2>TRANSAKSI</h2>
+                <h2>Keranjang Pesanan</h2>
             </div>
         </div>
         <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('transaksi.history')}}" role="button">History</a>
@@ -80,33 +79,10 @@ aside {
             <th>Jus Anggur</th>
             <th>
             <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
-        </tr>
-        <tr>
-            <th>Jus Apel</th>
-            <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
-        </tr>
-        <th>Jus Jambu</th>
-            <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-        <input type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text' name='quantity' value='1' class='qty' />
-        <input type='button' value='+' class='qtyplus plus' field='quantity' />
-        </form>
+                <input type='button' value='-' class='qtyminus minus' field='quantity' />
+                <input type='text' name='quantity' value='1' class='qty' />
+                <input type='button' value='+' class='qtyplus plus' field='quantity' />
+            </form>
         </th>
             <th>Rp 10000</th>
             <th>Rp 10000</th>
@@ -132,7 +108,7 @@ aside {
         <h6 class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
         <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
             <div class="d-flex">
-                <button id="btn" type='submit' class="btn btn-primary mt-2" style="align-items: center;">Enter</button>
+                <button id="btn" type='submit' class="btn btn-primary mt-2" style="align-items: center;">Pesan</button>
                 <div class="btn btn-primary mt-2 ms-3">
                 <i class="fa-solid fa-print"></i>
                 </div>
@@ -153,7 +129,33 @@ aside {
 @endsection
 @push('scripts')
     <script>
+        $(document).ready(function(){
+            const items = localStorage.getItem('pesanan') 
 
+
+            $('.qtyplus').click(function(e){
+                e.preventDefault();
+                // Get field name
+                fieldName = $(this).attr('field');
+                console.log(fieldName) // quantity
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                if (!isNaN(currentVal)) {
+                    $('input[name='+fieldName+']').val(currentVal + 1);
+                } else {
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+            $(".qtyminus").click(function(e) {
+                e.preventDefault();
+                fieldName = $(this).attr('field');
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                } else {
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+        });
     </script>
 
 @endpush

@@ -28,23 +28,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-5 px-2 pe-2 mt-2">
-            <a href="{{route('daftarmenu')}}">
-                <i class="fa-solid fa-arrow-left fa-3x"></i>
-            </a>
-        </div>
-        <div class="d-flex justify-content-center bold col-lg-2 px-0 pe-2">
-            <div style="color:black;margin-top:15px;font-weight: 900;font-family:'Noto Sans'">
-                <h2>ATUR MENU</h2>
-            </div>
-        </div>
+        <a style="position: absolute; top: 72px" href="{{route('menu.index')}}">
+            <i class="fa-solid fa-arrow-left fa-3x"></i>
+        </a>
+        <h2 class="text-center mt-4">Tambah Menu</h2>
    </div>
 </div>  
 
 <hr>
 
 <div class="d-flex justify-content-center" style="color:black;margin-top:10px;font-family:'Noto Sans'">
- <h4>TAMBAH MENU</h4>
 </div>
 <section class="row d-flex align-items-center justify-content-center" style="color:white; margin-top:20px;" >
     <form class="card px-5 py-4 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit" style="background-color:#001D49;">
@@ -52,31 +45,31 @@
     <div class="my-1">
     <label>Nama Produk</label>
             <div class="col-sm-20">
-            <input id="name" class='form-user-input' type='text' name='nama_produk'>
+            <input id="name" class='w-100 form-user-input' type='text' name='nama_produk'>
             </div>
             </div>
         <div class="my-1">
             <label>Deskripsi Produk</label>
             <div class="col-sm-20">
-            <input id="description" class='form-user-input' type='text' name='decs_produk'>
+            <input id="description" class='w-100 form-user-input' type='text' name='decs_produk'>
             </div>
         </div>
         <div class="my-1">
             <label>Stok Produk</label>
             <div class="col-sm-20">
-            <input id="stock" class='form-user-input' type='number' name='stok_produk'>
+            <input id="stock" class='w-100 form-user-input' type='number' name='stok_produk'>
             </div>
         </div>
         <div class="my-1">
             <label>HPP</label>
             <div class="col-sm-20">
-            <input id="production_cost" class='form-user-input' type='number' name='hpp_produk'>
+            <input id="production_cost" class='w-100 form-user-input' type='number' name='hpp_produk'>
             </div>
         </div>
         <div class="my-1">
             <label>Harga Jual</label>
             <div class="col-sm-20">
-            <input id="price" class='form-user-input' name='price_produk'>
+            <input id="price" class='w-100 form-user-input' name='price_produk'>
             </div>
         </div>
     </form>
@@ -111,7 +104,7 @@
                 
                 const data = {name, description, price, stock, production_cost}
 
-                $.ajax("{{route('product.store')}}", {
+                $.ajax("{{route('api.product.store')}}", {
                     type : 'POST',
                     data : data,
                     headers: {

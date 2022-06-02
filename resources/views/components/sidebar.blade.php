@@ -15,12 +15,19 @@
                     </i>
                 </a>
             </li>
+           </li>
             <li>
+                <a href="{{route('pesanan.tambah')}}" class="nav-link px-4 mt-4 active">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Pesan</span>
+                </a>
+            </li>
+            <!-- <li>
                 <a href="{{route('transaksi')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-regular fa-money-bill-1"></i>
                     <span>Transaksi</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{route('pegawai.index')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-user-group"></i>
@@ -30,15 +37,15 @@
             <li>
                 <a href="{{route('menu.index')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-square-plus"></i>
-                    <span>Atur Menu</span>
+                    <span>Daftar Menu</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="nav-link px-4 mt-3  active">
+            <!-- <li>
+                <a href="{{route('transaksi.history')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-clipboard-list"></i>
                     <span>Laporan Keuangan</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </div>
