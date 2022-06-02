@@ -70,23 +70,13 @@ aside {
     <div class="card-body">
         <table class="table" data-filter-control="true" data-show-search-clear-button="true" border="1">
         <tr style="background-color:#001D49; color:white;">
+            <th>ID Produk</th>
             <th>Jenis Pesanan</th>
             <th>QTY</th>
             <th>Harga Per-Unit</th>
             <th>Sub Total</th>
         </tr>
-        <tr>
-            <th>Jus Anggur</th>
-            <th>
-            <form id='myform' method='POST' class='quantity' action='#'>
-                <input type='button' value='-' class='qtyminus minus' field='quantity' />
-                <input type='text' name='quantity' value='1' class='qty' />
-                <input type='button' value='+' class='qtyplus plus' field='quantity' />
-            </form>
-        </th>
-            <th>Rp 10000</th>
-            <th>Rp 10000</th>
-        </tr>
+        <!-- data inside here -->
         </table>
     </div>
     <div style="color:white;background: #001D49; width: 30%; margin-top:15px; border: 1px solid black;" class="bagian-kanan">
@@ -105,7 +95,7 @@ aside {
         <div class="ps-3 pt-4">
             <h4>Kembali</h4>
         </div>
-        <h6 class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
+        <h6 id="total" class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
         <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
             <div class="d-flex">
                 <button id="btn" type='submit' class="btn btn-primary mt-2" style="align-items: center;">Pesan</button>
@@ -130,31 +120,111 @@ aside {
 @push('scripts')
     <script>
         $(document).ready(function(){
-            const items = localStorage.getItem('pesanan') 
+            const items = JSON.parse(localStorage.getItem('pesanan'))
+            if(items) {
+                items.forEach(item => {
+                    $('.table').append(`
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.name}</td>
+                            <td>
+                                <form id='myform' method='POST' class='quantity' action='#'>
+                                    <input type='button' value='-' class='qtyminus minus' field='${item.id}' />
+                                    <input type='text' name='${item.id}' value='${item.qty ?? 1}' class='qty' />
+                                    <input type='button' value='+' class='qtyplus plus' field='${item.id}' />
+                            </form>
+                            </td>
+                            <td class='price ${item.id}'>${item.price}</td>
+                            <td class='subtotal ${item.id}'>${(item.qty * item.price)}</td>
+                        </tr>
+                    `)
+                })
+            } else {
+                $('.table').append(
+                    `
+                    <tr>
+                        <td colspan="5" align="center">Silakan tambahkan produk</td>
+                    </tr>
+                    `
+                )
+            }
 
 
             $('.qtyplus').click(function(e){
                 e.preventDefault();
-                // Get field name
+                const items = JSON.parse(localStorage.getItem('pesanan'))
                 fieldName = $(this).attr('field');
-                console.log(fieldName) // quantity
+
+                for(let item of items) {
+                    if(item.id == fieldName) {
+                        item.qty += 1
+                        localStorage.setItem('pesanan', JSON.stringify(items))
+                        break
+                    }
+                }
+
+
                 var currentVal = parseInt($('input[name='+fieldName+']').val());
                 if (!isNaN(currentVal)) {
-                    $('input[name='+fieldName+']').val(currentVal + 1);
+                    let price = parseInt($('.price.'+fieldName).text());
+                    let updatedVal = currentVal + 1;
+                    let subtotal = (updatedVal * price)
+
+                    $('.subtotal.'+fieldName).text(subtotal)
+                    // Increment
+                    $('input[name='+fieldName+']').val(updatedVal);
+                    
+
                 } else {
                     $('input[name='+fieldName+']').val(0);
                 }
             });
+
+            $('.qtyminus, .qtyplus').click(function(e){
+                e.preventDefault();
+                let total = $(".subtotal").map(function() {
+                    return parseInt($(this).text());
+                }).get();
+                let totalPrice = total.reduce((a, b) => a + b, 0);
+                $('#total').text("Rp. " + totalPrice)
+            })
+
+
+
+
             $(".qtyminus").click(function(e) {
                 e.preventDefault();
+                const items = JSON.parse(localStorage.getItem('pesanan'))
                 fieldName = $(this).attr('field');
+
+                for(let item of items) {
+                    if(item.id == fieldName && item.qty > 0) {
+                        item.qty -= 1
+                        localStorage.setItem('pesanan', JSON.stringify(items))
+                        break
+                    }
+                }
                 var currentVal = parseInt($('input[name='+fieldName+']').val());
                 if (!isNaN(currentVal) && currentVal > 0) {
-                    $('input[name='+fieldName+']').val(currentVal - 1);
+                    let price = parseInt($('.price.'+fieldName).text());
+                    let updatedVal = currentVal - 1;
+                    let subtotal = (updatedVal * price)
+
+                    $('.subtotal.'+fieldName).text(subtotal)
+                    $('input[name='+fieldName+']').val(updatedVal);
                 } else {
                     $('input[name='+fieldName+']').val(0);
                 }
             });
+
+
+            function checkItemById(items, id) {
+                if(items.filter(item => item.id == id).length > 0) {
+                    return true
+                } 
+                return false
+            }
+
         });
     </script>
 
