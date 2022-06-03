@@ -110,38 +110,7 @@ aside {
         </tr>
         </table>
     </div>
-    <div style="color:white;background: #001D49; width: 30%; margin-top:15px; border: 1px solid black;" class="bagian-kanan">
-        <div class="ps-3 pt-4">
-            <h5>Jumlah Bayar</h5>
-        </div>
-        <h6 class="total py-2 d-flex align-items-center">50.000 IDR</h6>
-        <h6 class="ps-3 pt-4">Sub Total: 20.000 IDR</h6>
-        <h6 class="ps-3 pt-4">Diskon: </h6>
-        <h6 class="ps-3 pt-4">Tax: </h6>
-
-        <div class="ps-3 pt-4">
-            <h4>Total</h4>
-        </div>
-        <h6 class="total py-2 d-flex align-items-center">Rp.30.000</h6>
-        <div class="ps-3 pt-4">
-            <h4>Kembali</h4>
-        </div>
-        <h6 class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
-        <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
-            <div class="d-flex">
-            <div class="btn btn-primary mt-2 ms-3">
-            <i class="fa-solid fa-trash"></i>
-            </div>
-            </div>
-            <div class="d-flex">
-                <button id="btn" type='submit' class="btn btn-primary mt-2 ms-3" style="align-items: center;">EDIT</button>
-                <div class="btn btn-primary mt-2 ms-3">
-                <i class="fa-solid fa-print"></i>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    
 </div>
 
 <div class="copyright">
