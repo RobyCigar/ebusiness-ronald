@@ -96,7 +96,7 @@
                 Jumlah Penjualan
             </div>
             <div class="card-body row align-items-center">
-                <h2 id="total_transaction" class="card-title font-weight-bold">10000</h2>
+                <h2 id="total_transaction" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
     </section>
@@ -162,7 +162,7 @@
                 type: "GET",
                 success: function(data) {
                     console.log(data)
-                    $('#total_transaction').text(`${data.total_transaction} IDR`);
+                    $('#total_transaction').text(`${data.total_transaction} Item`);
                 },
                 error: function(data) {
                     let alert = $('div[role="alert"]')

@@ -159,7 +159,7 @@ aside {
                     let newItems = prevItems.map(item => {
                         if(!item.qty) {
                             item.qty = 1;
-                        } else {
+                        } else if(item.id == newItemID) {
                             item.qty += 1;
                         }
 

@@ -49,6 +49,9 @@ aside {
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
 
+<div class="" role="alert" style="display:none;">
+</div>
+
 <div class="container">
     <div class="row" style="position: relative;">
         <div class="col-lg-4 px-2 pe-2 mt-2">
@@ -64,6 +67,8 @@ aside {
 </div>  
 
 <hr>
+
+
 
 </section>
 <div class="container d-flex">
@@ -96,13 +101,14 @@ aside {
             <h4>Kembali</h4>
         </div>
         <h6 id="total" class="total py-2 d-flex align-items-center">Rp.20.000 -</h6>
-        <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
-            <div class="d-flex">
-                <button id="btn" type='submit' class="btn btn-primary mt-2" style="align-items: center;">Pesan</button>
-                <div class="btn btn-primary mt-2 ms-3">
-                <i class="fa-solid fa-print"></i>
+        <div class="mx-3 mt-2 mb-3">
+            <form id="pesanan">
+
+                <button type='submit' class="btn btn-primary w-100 mt-2">Pesan</button>
+                <div class="btn btn-secondary w-100 mt-2">
+                <i class="fa-solid fa-print"></i> Print
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>
@@ -120,35 +126,39 @@ aside {
 @push('scripts')
     <script>
         $(document).ready(function(){
-            const items = JSON.parse(localStorage.getItem('pesanan'))
-            if(items) {
-                items.forEach(item => {
-                    $('.table').append(`
+            function onload() {
+                const items = JSON.parse(localStorage.getItem('pesanan'))
+                if(items) {
+                    items.forEach(item => {
+                        $('.table').append(`
+                            <tr class="table-item">
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td>
+                                    <form id='myform' method='POST' class='quantity' action='#'>
+                                        <input type='button' value='-' class='qtyminus minus' field='${item.id}' />
+                                        <input type='text' name='${item.id}' value='${item.qty ?? 1}' class='qty' />
+                                        <input type='button' value='+' class='qtyplus plus' field='${item.id}' />
+                                </form>
+                                </td>
+                                <td class='price ${item.id}'>${item.price}</td>
+                                <td class='subtotal ${item.id}'>${(item.qty * item.price)}</td>
+                            </tr>
+                        `)
+                    })
+                } else {
+                    $('.table').append(
+                        `
                         <tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>
-                                <form id='myform' method='POST' class='quantity' action='#'>
-                                    <input type='button' value='-' class='qtyminus minus' field='${item.id}' />
-                                    <input type='text' name='${item.id}' value='${item.qty ?? 1}' class='qty' />
-                                    <input type='button' value='+' class='qtyplus plus' field='${item.id}' />
-                            </form>
-                            </td>
-                            <td class='price ${item.id}'>${item.price}</td>
-                            <td class='subtotal ${item.id}'>${(item.qty * item.price)}</td>
+                            <td colspan="5" align="center">Silakan tambahkan produk</td>
                         </tr>
-                    `)
-                })
-            } else {
-                $('.table').append(
-                    `
-                    <tr>
-                        <td colspan="5" align="center">Silakan tambahkan produk</td>
-                    </tr>
-                    `
-                )
+                        `
+                    )
+                }
             }
 
+            // call when page is rendered
+            onload()
 
             $('.qtyplus').click(function(e){
                 e.preventDefault();
@@ -224,6 +234,61 @@ aside {
                 } 
                 return false
             }
+
+            $("#pesanan").submit(function(e){
+                e.preventDefault();
+                const parsedLS = JSON.parse(localStorage.getItem('pesanan'))
+                const items = []
+
+                if(!parsedLS) {
+                    let alert = $('div[role="alert"]');
+                    alert.addClass('alert alert-danger');
+                    alert.html("tambahkan juice terlebih dahulu");
+                    alert.show()
+                }
+
+                // rename the object keys in items to be exact same as the api
+                for(let i = 0; i < parsedLS.length; i++) {
+                    let tmp = {}
+                    tmp.product_id = parsedLS[i].id
+                    tmp.quantity = parsedLS[i].qty
+                    tmp.price = parsedLS[i].price
+                    console.log(tmp)
+
+                    items.push(tmp)
+                }
+
+                console.log("sihiiit", items, parsedLS)
+
+                    $.ajax({
+                        url: "{{route('api.transaction.store')}}",
+                        type: "POST",
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem('token')
+                        },
+                        data: {
+                            _token: "{{csrf_token()}}",
+                            items: items
+                        },
+                        success: function(data) {
+                            console.log(data)
+                            let alert = $('div[role="alert"]');
+                            localStorage.removeItem('pesanan')
+                            alert.addClass('alert alert-success');
+                            alert.html(data.message);
+                            alert.show()
+                            onload()
+
+                            $(".table-item").remove()
+                        },
+                        error: function(data) {
+                            let alert = $('div[role="alert"]');
+                            alert.addClass('alert alert-danger');
+                            alert.html(data.responseJSON.message);
+                            alert.show()
+                        }
+                    })
+            })
 
         });
     </script>
