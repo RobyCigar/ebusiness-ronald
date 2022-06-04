@@ -59,7 +59,7 @@ aside {
                 <h2>Daftar Menu</h2>
             </div>
         </div>
-        <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('transaksi.history')}}" role="button">History</a>
+        <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('transaksi.index')}}" role="button">Laporan Keuangan</a>
    </div>
 </div>  
 
@@ -127,9 +127,6 @@ aside {
                                 </div>
                                 `;
                     }
-                    $('#menu').html(html);
-
-                    wind
                 }
             });
 
