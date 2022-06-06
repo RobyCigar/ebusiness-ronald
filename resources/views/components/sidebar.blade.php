@@ -22,12 +22,6 @@
                     <span>Pesan</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href="{{route('transaksi')}}" class="nav-link px-4 mt-3  active">
-                    <i class="fa-regular fa-money-bill-1"></i>
-                    <span>Transaksi</span>
-                </a>
-            </li> -->
             <li>
                 <a href="{{route('pegawai.index')}}" class="nav-link px-4 mt-3  active">
                     <i class="fa-solid fa-user-group"></i>
@@ -40,12 +34,12 @@
                     <span>Daftar Menu</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href="{{route('transaksi.history')}}" class="nav-link px-4 mt-3  active">
-                    <i class="fa-solid fa-clipboard-list"></i>
+            <li>
+                <a href="{{route('transaksi.index')}}" class="nav-link px-4 mt-3  active">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>Laporan Keuangan</span>
                 </a>
-            </li> -->
+            </li>
         </ul>
     </nav>
 </div>

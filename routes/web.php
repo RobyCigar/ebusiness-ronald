@@ -69,12 +69,9 @@ Route::get('/pesanan/tambah', function() {
 
 Route::get('/transaksi', function (){
     return view ('transaksi/index');
-})->name('transaksi');
+})->name('transaksi.index');
 
 Route::get('/transaksi/tambah', function (){
     return view ('transaksi/tambah');
 })->name('transaksi.tambah');
 
-Route::get('/transaksi/history', function (){
-    return view ('transaksi/history');
-})->name('transaksi.history');
