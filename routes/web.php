@@ -51,6 +51,10 @@ Route::get('/menu/tambah', function (){
     return view ('menu/tambah');
 })->name('menu.tambah');
 
+Route::get('/menu/edit', function (){
+    return view ('menu/edit');
+})->name('menu.edit');
+
 // pesanan
 
 Route::get('/pesanan', function() {
