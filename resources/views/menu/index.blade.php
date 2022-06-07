@@ -34,6 +34,8 @@ input.qtyminus { width:25px; height:25px;}
 <!-- Load sidebar component -->
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
+<div class="" role="alert" style="display:none;">
+</div>
 
 <div class="container" style="font-family:'Noto Sans'">
     <div class="d-flex justify-content-center" style="color:black;margin-top:20px;;">
@@ -82,35 +84,24 @@ input.qtyminus { width:25px; height:25px;}
 @endsection
 @push('scripts')
     <script>
-            function delete_item(id) {
-                $.ajax({
-                url: `{{route('api.product.index')}}/${id}`,
-                method: 'DELETE',
-                dataType: 'json',
-                headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('token')
-                },
-                success: function(data){
-                    console.log(data);
-                }
-            })
+        function delete_item(id) {
+            $.ajax({
+            url: `{{route('api.product.index')}}/${id}`,
+            method: 'DELETE',
+            dataType: 'json',
+            headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(data){
+                console.log(data);
+                let alert = $('div[role="alert"]');
+                alert.addClass('alert alert-danger');
+                alert.html(data.message);
+                alert.show()
             }
+        })
+        }
         $(document).ready(($) => {
-        
-            // $('.quantity').on('click', '.plus', function(e) {
-            //     let $input = $(this).prev('input.qty');
-            //     let val = parseInt($input.val());
-            //     $input.val( val + 1 ).change();
-            // });
-    
-            // $('.quantity').on('click', '.minus', 
-            //     function(e) {
-            //     let $input = $(this).next('input.qty');
-            //     var val = parseInt($input.val());
-            //     if (val > 0) {
-            //         $input.val( val - 1 ).change();
-            //     } 
-            // });
             $.ajax({
                 url: "{{route('api.product.index')}}",
                 method: 'GET',
@@ -127,7 +118,7 @@ input.qtyminus { width:25px; height:25px;}
                                     <td>${data[i].production_cost}</td>
                                     <td>${data[i].price}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="#">Edit</a>
+                                        <a class="btn btn-primary" href="{{route('menu.index')}}/edit?id=${data[i].id}">Edit</a>
                                         <a class="btn btn-danger" onclick="delete_item(${data[i].id})" href="#">Hapus</a>
                                     </td>
                                 </tr>

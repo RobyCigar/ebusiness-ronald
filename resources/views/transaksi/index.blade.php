@@ -73,7 +73,6 @@ aside {
             <th>Id Transaksi</th>
             <th>Tanggal</th>
             <th>Total</th>
-            <th>Status</th>
         </tr>
         <!-- place data below -->
         </table>
@@ -109,7 +108,6 @@ aside {
                                         <td>${data[i].id}</td>
                                         <td>${date}</td>
                                         <td>${data[i].total_price}</td>
-                                        <td>${data[i].status}</td>
                                     </tr>
                                 `;
                             }

@@ -26,6 +26,9 @@
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
 
+<div class="" role="alert" style="display:none;">
+</div>
+
 <div class="container">
     <div class="row">
         <a style="position: absolute; top: 72px" href="{{route('menu.index')}}">
@@ -118,10 +121,16 @@
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     },
                     success: function (data){
-                        console.log('here')
+                        let alert = $('div[role="alert"]');
+                        alert.addClass('alert alert-success');
+                        alert.html('Item berhasil didaftarkan');
+                        alert.show()
                     },
                     error: function (jqXHR, textStatus, errorMessage) {
-                        alert('Error : ' + errorMessage)
+                        let alert = $('div[role="alert"]');
+                        alert.addClass('alert alert-danger alert-dismissible');
+                        alert.html(data.responseJSON.message);
+                        alert.show()
                     }
                 })
             })
