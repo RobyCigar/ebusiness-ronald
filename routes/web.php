@@ -51,6 +51,10 @@ Route::get('/menu/tambah', function (){
     return view ('menu/tambah');
 })->name('menu.tambah');
 
+Route::get('/menu/edit', function (){
+    return view ('menu/edit');
+})->name('menu.edit');
+
 // pesanan
 
 Route::get('/pesanan', function() {
@@ -65,12 +69,9 @@ Route::get('/pesanan/tambah', function() {
 
 Route::get('/transaksi', function (){
     return view ('transaksi/index');
-})->name('transaksi');
+})->name('transaksi.index');
 
 Route::get('/transaksi/tambah', function (){
     return view ('transaksi/tambah');
 })->name('transaksi.tambah');
 
-Route::get('/transaksi/history', function (){
-    return view ('transaksi/history');
-})->name('transaksi.history');

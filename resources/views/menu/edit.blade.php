@@ -26,21 +26,23 @@
 <x-sidebar/>
 <!-- Isi Konten Dashboard -->
 
-<div class="" role="alert" style="display:none;">
-</div>
+
 
 <div class="container">
+    <div class="" role="alert" style="display:none;">
+    </div>
     <div class="row">
         <a style="position: absolute; top: 72px" href="{{route('menu.index')}}">
             <i class="fa-solid fa-arrow-left fa-3x"></i>
         </a>
-        <h2 class="text-center mt-4">Tambah Menu</h2>
+        <h2 class="text-center mt-4">Edit Menu</h2>
    </div>
 </div>  
 
 <hr>
 
 <div class="d-flex justify-content-center" style="color:black;margin-top:10px;font-family:'Noto Sans'">
+
 </div>
 <section class="row d-flex align-items-center justify-content-center" style="color:white; margin-top:20px;" >
     <form class="card px-5 py-4 shadow col-12 col-sm-6 col-md-5 col-lg-3 center-this-shit" style="background-color:#001D49;">
@@ -101,6 +103,27 @@
 @push('scripts')
     <script>
         $(document).ready(function(){
+            let id = {{ app('request')->input('id') }};
+
+
+            $.ajax({
+                url: "{{route('api.product.show', app('request')->input('id'))}}",
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                },
+                success: data => {
+                    console.log(data)
+                    $('#name').val(data.name);
+                    $('#description').val(data.description);
+                    $('#price').val(data.price);
+                    $('#production_cost').val(data.production_cost);
+                    $('#image').val(data.image);
+                    $('#stock').val(data.stock);
+                },
+                error: err => {
+                    console.error(err)
+                }
+            })
 
 
             $('#btn').click(e => {
@@ -114,8 +137,8 @@
                 
                 const data = {name, description, price, stock, production_cost, image}
 
-                $.ajax("{{route('api.product.store')}}", {
-                    type : 'POST',
+                $.ajax("{{route('api.product.update',app('request')->input('id'))}}", {
+                    type : 'PUT',
                     data : data,
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -123,14 +146,11 @@
                     success: function (data){
                         let alert = $('div[role="alert"]');
                         alert.addClass('alert alert-success');
-                        alert.html('Item berhasil didaftarkan');
+                        alert.html(data.message);
                         alert.show()
                     },
                     error: function (jqXHR, textStatus, errorMessage) {
-                        let alert = $('div[role="alert"]');
-                        alert.addClass('alert alert-danger alert-dismissible');
-                        alert.html(data.responseJSON.message);
-                        alert.show()
+                        alert('Error : ' + errorMessage)
                     }
                 })
             })

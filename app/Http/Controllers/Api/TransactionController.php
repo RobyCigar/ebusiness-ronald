@@ -31,6 +31,17 @@ class TransactionController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * receive:
+     * {
+     *  "items": [
+     *     {
+     *      "product_id": 1,
+     *      "quantity": 2,
+     *      "price": 100
+     *    }
+     * ]
+     * }
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

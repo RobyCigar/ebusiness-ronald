@@ -96,7 +96,7 @@
                 Jumlah Penjualan
             </div>
             <div class="card-body row align-items-center">
-                <h2 id="total_transaction" class="card-title font-weight-bold">10000</h2>
+                <h2 id="total_transaction" class="card-title font-weight-bold">Loading...</h2>
             </div>
         </div>
     </section>
@@ -128,11 +128,29 @@
 <script>
     // fetch omset, keuntungan, omset, dan total penjualan
     $(document).ready(function() {
+		/* Fungsi formatRupiah */
+            function formatRupiah(angka, prefix){
+                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split   		= number_string.split(','),
+                sisa     		= split[0].length % 3,
+                rupiah     		= split[0].substr(0, sisa),
+                ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+    
+                // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                if(ribuan){
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
+    
+                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+            }
+
             $.ajax({
                 url: "{{route('api.omset')}}",
                 type: "GET",
                 success: function(data) {
-                    $('#omset').text(`${data} IDR`);
+                    $('#omset').text(`${formatRupiah(data.toString(), 'Rp. ')}`);
                 },
                 error: function(data) {
                     console.log('error', data)
@@ -147,7 +165,7 @@
                 url: "{{route('api.keuntungan')}}",
                 type: "GET",
                 success: function(data) {
-                    $('#keuntungan').text(`${data} IDR`);
+                    $('#keuntungan').text(formatRupiah(data.toString(), 'Rp. '));
                 },
                 error: function(data) {
                     let alert = $('div[role="alert"]')
@@ -162,7 +180,7 @@
                 type: "GET",
                 success: function(data) {
                     console.log(data)
-                    $('#total_transaction').text(`${data.total_transaction} IDR`);
+                    $('#total_transaction').text(`${data.total_transaction} Item`);
                 },
                 error: function(data) {
                     let alert = $('div[role="alert"]')
@@ -187,7 +205,7 @@
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 30, 20, 10, 14],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -222,7 +240,7 @@
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 29, 20, 23, 32],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
