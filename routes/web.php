@@ -25,6 +25,7 @@ Route::get('/dashboard', function() {
 })->name('dashboard');
 
 Route::get('auth/login', function () {
+    var_dump(config('app.env'));
     return view('auth/login');
 })->name('login');
 
