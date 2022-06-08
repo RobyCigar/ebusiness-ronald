@@ -13,7 +13,8 @@ use App\Http\Controllers\PegawaiController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // redirect to login page
+    return redirect()->route('login');
 });
 
 // Auth::routes();
@@ -25,7 +26,6 @@ Route::get('/dashboard', function() {
 })->name('dashboard');
 
 Route::get('auth/login', function () {
-    var_dump(config('app.env'));
     return view('auth/login');
 })->name('login');
 
