@@ -258,7 +258,6 @@ aside {
                     items.push(tmp)
                 }
 
-                console.log("sihiiit", items, parsedLS)
 
                     $.ajax({
                         url: "{{route('api.transaction.store')}}",

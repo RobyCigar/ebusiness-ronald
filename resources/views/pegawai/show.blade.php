@@ -23,19 +23,20 @@
 <!-- Load sidebar component -->
 <x-sidebar/>
 
-<h1>
-    Nama: {{$pegawai->name}}
-</h1>
+<div class="mx-4 my-5">
+    <h1>
+        Detail Pegawai
+    </h1>
 
-<h1>
-    Pegawai: {{$pegawai->email}}
-</h1>
+    <h5>
+        Nama: {{$pegawai->name}} <br>
+        Pegawai: {{$pegawai->email}} <br>
+        Jam kerja: {{$pegawai->start_session}}:00 - {{$pegawai->end_session}}:00
+    </h5>
+</div>
 
-<h1>
-    Jam kerja: {{$pegawai->start_session}} - {{$pegawai->end_session}}
-</h1>
 
-<table>
+<table class="table">
     <tr>
         <th>No</th>
         <th>Tanggal</th>
@@ -49,7 +50,7 @@
         <td>{{$item->day}}</td>
         <td>{{$item->time ?? "-"}}</td>
         <td>{{$item->time_start}}</td>
-        <td>{{$item->time_end ?? "Lupa logout"}}</td>
+        <td>{{$item->time_end ?? "-"}}</td>
     </tr>
     @endforeach
 </table>

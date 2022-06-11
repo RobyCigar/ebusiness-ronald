@@ -59,7 +59,6 @@ aside {
                 <h2>Laporan Transaksi</h2>
             </div>
         </div>
-        <!-- <a style="position: absolute;right: 0;width:130px;margin-right:20px;" class="col-lg-2 pe-2 mt-2 btn btn-primary btn-lg" href="{{route('transaksi.index')}}" role="button">History</a> -->
    </div>
 </div>  
 
@@ -73,6 +72,7 @@ aside {
             <th>Id Transaksi</th>
             <th>Tanggal</th>
             <th>Total</th>
+            <th>Aksi</th>
         </tr>
         <!-- place data below -->
         </table>
@@ -108,6 +108,9 @@ aside {
                                         <td>${data[i].id}</td>
                                         <td>${date}</td>
                                         <td>${data[i].total_price}</td>
+                                        <td>
+                                            <a href="{{route('transaksi.index')}}/${data[i].id}" class="btn">Print</a>
+                                        </td>
                                     </tr>
                                 `;
                             }

@@ -111,8 +111,7 @@ aside {
                 success: function(data){
                     console.log(data);
                     var html = '';
-                    var i;
-                    for(i = 0; i < data.length; i++) {
+                    for(let i = 0; i < data.length; i++) {
 
                         html += `<div class="col-lg-3">
                                     <div class="card text-white bg-dark mb-3" style="max-width: 15rem;">
@@ -127,6 +126,9 @@ aside {
                                 </div>
                                 `;
                     }
+
+                    $('#menu').html(html);
+
                 }
             });
 
