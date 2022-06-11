@@ -98,10 +98,11 @@ input.qtyminus { width:25px; height:25px;}
                 alert.addClass('alert alert-danger');
                 alert.html(data.message);
                 alert.show()
+                fetchProduct()
             }
         })
         }
-        $(document).ready(($) => {
+        function fetchProduct() {
             $.ajax({
                 url: "{{route('api.product.index')}}",
                 method: 'GET',
@@ -127,9 +128,11 @@ input.qtyminus { width:25px; height:25px;}
                     $('#menu').html(html);
                 }
             });
+        }
 
-
-    });
+        $(document).ready(($) => {
+            fetchProduct();
+        });
 
 
     

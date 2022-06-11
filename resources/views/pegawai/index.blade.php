@@ -58,7 +58,7 @@
                                 <th scope="col">Telefon</th>
                                 <th scope="col">Last Updated</th>
                                 <th scope="col">Last Created</th>
-                                <th scope="col"></th>
+                                <th scope="col">Action</th>
                                 <!-- <th scope="col">Action</th> -->
                             </tr>
                         </thead>
@@ -72,9 +72,10 @@
                                 <td>{{\Carbon\Carbon::parse($user->updated_at)->diffForHumans()}}</td>
                                 <td>{{\Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
                                 <td>
+                                    <a class="btn btn-primary" href="{{route('pegawai.show', $user->id)}}">Lihat</a>
 						<!-- <button class="btn btn-success btn-sm"> <i class="fa fa-edit"></i> Edit </button>
 						<button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus </button> -->
-				</td>
+				                </td>
                                 <!-- <td>
                                     <form action="" method="POST">
                                         @csrf

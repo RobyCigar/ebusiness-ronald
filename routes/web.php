@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaiController;
+use App\Models\Transaction;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,8 @@ use App\Http\Controllers\PegawaiController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // redirect to login page
+    return redirect()->route('login');
 });
 
 // Auth::routes();
@@ -25,7 +28,6 @@ Route::get('/dashboard', function() {
 })->name('dashboard');
 
 Route::get('auth/login', function () {
-    var_dump(config('app.env'));
     return view('auth/login');
 })->name('login');
 
@@ -76,3 +78,9 @@ Route::get('/transaksi/tambah', function (){
     return view ('transaksi/tambah');
 })->name('transaksi.tambah');
 
+Route::get('/transaksi/{id}', function ($id){
+    $transaction = Transaction::with('transaction_items')->find($id);
+    $user = User::find($transaction->user_id);
+
+    return view ('transaksi/show', compact('transaction', 'user'));
+})->name('transaksi.tambah');

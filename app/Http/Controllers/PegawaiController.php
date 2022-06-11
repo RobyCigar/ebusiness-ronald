@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 
 class PegawaiController extends Controller
@@ -40,7 +42,10 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        //
+        $pegawai = User::find($id);
+        $absen = Attendance::select(DB::raw('TIMEDIFF(time_end, time_start) as time, time_start, time_end, DAY(time_start) as day'))->where('user_id', $id)->get();
+
+        return view('pegawai/show', compact('pegawai', 'absen'));
     }
 
     /**
